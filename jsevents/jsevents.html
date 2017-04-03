@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>js events</title>
+</head>
+
+<body>
+	<input type="text" id="fn" placeholder="First Name">
+	<br><br>
+	<input type="text" id="ln" placeholder="Last Name">
+	<hr>
+	<p>Keyboard value: <b id="keyValue"></b></p>
+	<hr>
+	<button id="clickEvent">Click event</button>
+	<br>
+	<p>Click value: <b id="clickValue"></b></p>
+	<hr>
+	<p id="hoverEvent">Hover value: <b id="hoverValue"></b></p>
+	<hr>
+	<p>see full list of events: <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">here</a></p>
+	<script>
+		function processinputs() {
+			fName = document.getElementById('fn').value;
+			lName = document.getElementById('ln').value;
+			fullN = fName + " " + lName;
+		}
+		
+		document.getElementById('fn').onkeyup = function(){
+			processinputs();
+			document.getElementById('keyValue').innerHTML = fullN;
+		}
+
+		document.getElementById('ln').onkeyup = function(){
+			processinputs();
+			document.getElementById('keyValue').innerHTML = fullN;
+		}
+
+		document.getElementById('clickEvent').onclick = function(){
+			processinputs();
+			document.getElementById('clickValue').innerHTML = fullN;
+		}
+
+		document.getElementById('hoverEvent').onmouseover = function(){
+			processinputs();
+			document.getElementById('hoverValue').innerHTML = fullN;
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS DOM</title>
+</head>
+
+<body>
+
+	<img src="kitty.jpg" id="saywha" class="imgclass" style="width:200px;" alt="say whaaaaaaa!">
+	<p>paragraph 1</p>
+	<p class="pclass">paragraph 2</p>
+	<p class="pclass">paragraph 3</p>
+	<p class="pNotThis">paragraph 4</p>
+	<p>see full list of style object <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">here</a></p>
+
+	<p>
+		<b id="findImgSrc"></b>
+	</p>
+
+	<hr>
+
+	<p>
+		<b id="pText"></b>
+	</p>
+
+	<hr>
+
+	<p>
+		<b class="pFirst"></b>
+	</p>
+
+	<script>
+
+		//find element by id
+		a = document.getElementById('saywha').src;
+		b = document.getElementById('saywha').className;
+		c = document.getElementById('saywha').style.width;
+		d = document.getElementById('saywha').alt;
+		e = a + '<br>' + b + '<br>' + c + '<br>' + d;
+		document.getElementById('findImgSrc').innerHTML = e;
+
+		//find element by class
+		f = document.getElementsByClassName("pclass");
+		for (g = 0; g < f.length; ++g) {
+			textnode = document.createTextNode(g + ": " + f[g].innerHTML);
+			br = document.createElement("br");
+			document.getElementById("pText").appendChild(textnode);
+			document.getElementById("pText").appendChild(br);
+		}
+
+		//find element by css selector
+		h = document.querySelectorAll('p')[0].innerHTML;
+		document.getElementsByClassName('pFirst')[0].innerHTML = h;
+		document.getElementsByClassName('pFirst')[0].style.color = "#f00";
+		document.getElementsByClassName('pFirst')[0].setAttribute("id", "hi");
+
+	</script>
+
+</body>
+</html>
