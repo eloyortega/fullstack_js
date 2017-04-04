@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Cheat Sheet</title>
+</head>
+<body>
+<script type="text/javascript">
+	date = new Date();
+    hours = date.getHours() % 12 || 12;
+    set = new Date();
+    set.setDate(date.getDate() + 30);
+
+    document.write(date);
+    document.write('<br>')
+    document.write(date.toDateString());
+    document.write('<br>')
+    document.write(hours+':'+date.getMinutes());
+    document.write('<br>')
+    document.write(set.toDateString());
+    
+</script>
+</body>
+</html>
