@@ -5,19 +5,36 @@
 </head>
 <body>
 <script type="text/javascript">
-	date = new Date();
-    hours = date.getHours() % 12 || 12;
-    set = new Date();
-    set.setDate(date.getDate() + 30);
 
-    document.write(date);
-    document.write('<br>')
-    document.write(date.toDateString());
-    document.write('<br>')
-    document.write(hours+':'+date.getMinutes());
-    document.write('<br>')
-    document.write(set.toDateString());
-    
+	date = new Date();
+	document.write(date);
+	document.write('<br>');
+	document.write(date.toDateString());
+	document.write('<br>');
+
+	hours = date.getHours() % 12 || 12;
+	document.write(hours+':'+date.getMinutes(2));
+	document.write('<br>');
+
+	set = new Date();
+	set.setDate(date.getDate() + 30);
+	document.write(set.toDateString());
+	document.write('<br>');
+
+	StartTimer = function(){
+		timer = setInterval(function(){
+			date2 = new Date();
+			document.getElementById('timer').innerHTML = date2;
+		},1000);
+	}
+
+	StopTimer = function(){
+		clearInterval(timer);
+	}
+
 </script>
+<p id="timer"></p>
+<button onclick="StartTimer()">Start Timer</button>
+<button onclick="StopTimer()">Stop Timer</button>
 </body>
 </html>
