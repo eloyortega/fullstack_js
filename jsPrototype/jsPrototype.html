@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js</title>
+</head>
+<body>
+
+<script>
+//Prototyping an Object
+//Create an Object
+function Person(name) {
+	this.name = name;
+}
+
+//build a method called sayHello for the Object called 'Person'
+Person.prototype.sayHello = function () {
+	document.write("Hi! I'm " + this.name);
+};
+
+//Create new instances of 'Person'
+var person1 = new Person('Rose');
+var person2 = new Person('Ichabod');
+
+// call the Person sayHello method.
+person1.sayHello();
+</script>
+
+</body>
+</html>

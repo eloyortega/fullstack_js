@@ -29,6 +29,11 @@
 		<b class="pFirst"></b>
 	</p>
 
+	<p id="original">Thing 1</p>
+	<p id="clone"></p>
+	
+	<img id="kit2" src="kitty.jpg" style="width:200px;">
+
 	<script>
 
 		//find element by id
@@ -38,6 +43,10 @@
 		d = document.getElementById('saywha').alt;
 		e = a + '<br>' + b + '<br>' + c + '<br>' + d;
 		document.getElementById('findImgSrc').innerHTML = e;
+
+		//set values
+		document.getElementById('kit2').src = 'kitten.jpg';
+		document.getElementById('kit2').style.border = '1px #f00 solid';
 
 		//find element by class
 		f = document.getElementsByClassName("pclass");
@@ -53,6 +62,11 @@
 		document.getElementsByClassName('pFirst')[0].innerHTML = h;
 		document.getElementsByClassName('pFirst')[0].style.color = "#f00";
 		document.getElementsByClassName('pFirst')[0].setAttribute("id", "hi");
+		
+		//clone element
+		clone = document.getElementById("original").cloneNode(true);
+		document.getElementById("clone").appendChild(clone);
+		console.log(clone);
 
 	</script>
 
