@@ -58,13 +58,11 @@
 						$(this).after("<div>Animation complete.</div>");
 					}
 				});
-
 			});
 
 			$("#click2").dblclick(function() {
 				$("#reaction2").html('<p>double click</p>');
 			});
-
 
 			people = {
 				'John': {
@@ -111,21 +109,7 @@
 
 			$.each(people, function(key, value) {
 				$('#listPeople').append('<tr><td>' + key + '</td><td>' + value.age + '</td><td>' + value.gender + '</td></tr>');
-
 			});
-
-			//JS Time
-			a = new Date().getDate();
-
-			b = new Date().getDay();
-
-			c = new Date().getFullYear();
-
-			d = new Date().getHours();
-
-			e = new Date().getMinutes();
-
-			f = new Date().getSeconds();
 
 			now = new Date();
 			yest = new Date();
@@ -139,53 +123,14 @@
 			day28.setDate(now.getDate() + 28);
 			day28 = $.datepicker.formatDate('M d, yy', day28);
 
-
 			$("#thisDate").html('<p>' + now + '</p><p>' + yest + '</p><p>' + day28 + '</p>');
-
-			$("#dateList").html('<li>date: ' + a + '</li><li>day: ' + b + '</li><li>year: ' + c + '</li><li>hour: ' + d + '</li><li>minute: ' + e + '</li><li>second: ' + f + '</li>');
-
-			function timer() {
-				var g = new Date();
-				var t = g.toLocaleTimeString();
-				$("#timer").html(g);
-			}
-
-			var timer = function() {
-				var g = new Date();
-				var t = g.toLocaleTimeString();
-				$("#timer").html(g);
-			}
-
-
-			var time = setInterval(function() {
-				timer();
-			}, 1000);
-
-			$('#stopTimer').click(function() {
-				clearInterval(time);
-			});
-
-			$('#delayed').click(function() {
-				delay = setTimeout(function() {
-					alert('that took 3 seconds');
-				}, 3000);
-				return false;
-			});
-
-			$('#stopDelay').click(function() {
-				clearTimeout(delay);
-				return false;
-			});
 
 			$('.clicker').click(function() {
 				$(this).parents('#commonAncestor').find('.targetContainer > div > div p').css({
 					color: '#f00',
 					background: '#ccc'
 				});
-
 			});
-
-
 		});
 
 	</script>
@@ -240,17 +185,6 @@
 	<ul id="dateList">
 	</ul>
 
-	<p>A script on this page starts this clock:</p>
-	<p id="timer"></p>
-
-	<button id="stopTimer">Stop time</button>
-
-	<br><br>
-
-	<a href="#" id="delayed">delayed click</a>
-	<br>
-	<a href="#" id="stopDelay">stop alert</a>
-
 	<div id="commonAncestor">
 		<div>
 			<div>
@@ -268,7 +202,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
-
 </html>

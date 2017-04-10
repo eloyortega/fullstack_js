@@ -31,10 +31,24 @@
 	StopTimer = function(){
 		clearInterval(timer);
 	}
+	
+	function delay() {
+		delayAlert = setTimeout(function() {
+			alert('that took 3 seconds');
+		}, 3000);
+		return false;
+	};
+
+	function delayStop() {
+		clearTimeout(delayAlert);
+		return false;
+	};
 
 </script>
 <p id="timer"></p>
 <button onclick="StartTimer()">Start Timer</button>
 <button onclick="StopTimer()">Stop Timer</button>
+<button onclick="delay()">Trigger Alert</button>
+<button onclick="delayStop()">Stop Alert</button>
 </body>
 </html>
