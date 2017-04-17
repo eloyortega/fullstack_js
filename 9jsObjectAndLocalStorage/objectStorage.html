@@ -86,132 +86,71 @@ tr:nth-child(odd){
 	</div>
 </div>
 <script>
-	//check if the object 'herolist' is in local storage. if there isn't one create an empty array to work with...
 	if(localStorage.getItem("herolist") == null){
 		herolist = [];
 	} else{
-		//...else call it and conver it to an array  ('local storage can't save arrays so it is actually a string when called')
 		herolist = JSON.parse(localStorage.getItem("herolist"));
 	}
 
-	//function to build the object 'heros.' 'heros' is the object we place into our array called 'herolist'. In other words, 'herolist' will contain a bunch of objects called 'heros'
-	function heros( realName , name ){
+	for (ti = 0; ti < herolist.length; ti++){
+		t1 = JSON.parse(localStorage.getItem("herolist"))[ti].hero;
+		t2 = JSON.parse(localStorage.getItem("herolist"))[ti].alias;
+		var table = document.getElementById("savedheroes");
+		var tr = document.createElement("tr");
+		tr.className = "herow";
+		tr.innerHTML = '<td>' + t1 + '</td><td>' + t2 + '</td>';
+		table.appendChild(tr);
+		console.log(herolist.length,ti,t1,t2);
+	}
 
-		//when a new instance of heros is created. assign the variables to this functions parameters, 'realName' and 'name'
+	function heros( realName , name ){
 		this.realName = realName;
 		this.name = name;
-
-		//to shorten the code below, we create 2 more variables.
-		//the first is assigning #result (the list on line 87) to the variable 'result'.
 		var result = document.getElementById("result");
-
-		//we create an li which will look like (<li></li>) and assign it to the variable 'li'
 		var li = document.createElement("li");
-
-		//for fun, we add an if statement where if we have specific hero names, we display different text to go into our new li
-		//if realname equals 'Peter Parker'...
 		if (realName == 'Peter Parker'){
-			//...we add text to our new li which will result in '<li>Spider-man, Spider-man, does whatever a spider can</li>'...
 			li.innerHTML = this.name + ', ' + this.name + '<br>does whatever a spider can';
-			//...we then take that new li with the text within and append it to the #result (the list on line 87)
-			result.appendChild(li);
-		}
-		//in another if statement we check if the 'name' is equal to 'Thor', 'Captain America' OR 'Black Widow'...
-		else if (name == 'Thor' || name == 'Captain America' || name == 'Black Widow'){
-			//We then add specific text to add to the li
+		} else if (name == 'Thor' || name == 'Captain America' || name == 'Black Widow'){
 			li.innerHTML = this.name + ' is an avenger';
-			//...we then take that new li with the text within and append it to the #result (the list on line 87)
-			result.appendChild(li);
-		} else{
-			//if the top 2 conditions aren't met we default to add the name, a line break, and the real name to the new 'li'...
+		} else {
 			li.innerHTML = this.name+'<br>'+this.realName;
-			//...we then take that new li with the text within and append it to the #result (the list on line 87)
-			result.appendChild(li);
 		}
+		result.appendChild(li);
 
-		//create a new object to add to our array 'herolist' and assign 'name' to the object key 'hero' and realName to object key 'alias'
 		superhero = {};
 		superhero['hero'] = name;
 		superhero['alias'] = realName;
 
-		//create an empty array called 'checklist'
 		checklist = [];
 
-		//loop through the herolist. NOTE: since this check happens everytime this function is run, herolist may have hundreds of objects or none
 		for (idh = 0; idh < herolist.length; ++idh){
-			//for every object in herolist (idh is acting as our loop counter above and index below, add the 'hero' into the 'checklist' array (in line 153))
 			checklist.push(herolist[idh].hero);
 		}
 
-		//if the name isn't in the array (meaning it's a superhero that wasn't saved into our 'herolist' yet)...
 		if (checklist.indexOf(name) == -1){
-				//...add the object 'superhero' to the 'herolist' array...
-				herolist.push(superhero);
-				//...save the updated 'herolist' ARRAY to local storage as a STRING ('local storage can't save arrays')
-				localStorage.setItem("herolist", JSON.stringify(herolist));
-		}
-	}
+			herolist.push(superhero);
+			localStorage.setItem("herolist", JSON.stringify(herolist));
 
-	//here when the document loads we call the heros function to run once for 'Spiderman'...
-	new heros('Peter Parker', 'Spider-Man');
-	//... and again for 'Wolverine'
-	new heros('Logan', 'Wolverine');
-
-	//on line 81 we have a onclick function. when that button is clicked js calls this function called 'addition'
-	function addition(){
-		//get the values (text entered) of the 2 text inputs and assign them to variables 'n' and 'r'
-		n = document.getElementById('name').value;
-		r = document.getElementById('rname').value;
-		
-		//run the heros function (creating a new object) and place the text input values above as parameters. As seen in lines 170 and 172
-		new heros(r,n);
-
-		//lets also add the text input values to the table
-		//to shorten the code below assign the table '#savedheroes' to the variable 'table'...
-		var table = document.getElementById("savedheroes");
-		//... let's also create a new table row (<tr></tr>) and assign to variable 'tr'
-		var tr = document.createElement("tr");
-
-		//...let's also add a class. This isn't needed in our program, just showing the syntax for adding a class to an HTML element using js
-		tr.className = "herow";
-
-		//inside the table row we some more html for the table cells (<td></td>) and the text within resulting in '<tr><td>Superhero</td><td>RealName</td></tr>'
-		tr.innerHTML = '<td>' + n + '</td><td>' + r + '</td>';
-		//then we add it to the table.
-		table.appendChild(tr);
-
-		//Finally we remove the values in the text input feilds by setting the values to empty strings
-		document.getElementById('name').value = '';
-		document.getElementById('rname').value = '';
-	}
-
-	/*this function builds the table when called.
-	This function doesn't need to be a function. 
-	It's written as a function to demonstrate that functions aren't executed until they are called.
-	To see what i mean, comment out line at the bottom that says 'buildTB();' by itself, and the table will be empty on page load. 
-	You can then populate the table by opening console log in chrome, 
-	type 'buildTB()' in the console log and hit enter. 
-	This function will then execute and the table will populate */
-	function buildTB(){
-		//loop through the array 'herolist'
-		for (ti = 0; ti < herolist.length; ti++){
-			//as previously mentioned 'herolist' is full of objects. we go into each object, get the value for 'hero' and 'alias' and assign them to variables 't1' and 't2' respectively
-			t1 = JSON.parse(localStorage.getItem("herolist"))[ti].hero;
-			t2 = JSON.parse(localStorage.getItem("herolist"))[ti].alias;
-
-			//as in the function 'addition,' we populate the table. read lines 183 - 195 for details. The only difference is instead of usin variable n and r, we are using variables t1 and t2
 			var table = document.getElementById("savedheroes");
 			var tr = document.createElement("tr");
 			tr.className = "herow";
-			tr.innerHTML = '<td>' + t1 + '</td><td>' + t2 + '</td>';
+			tr.innerHTML = '<td>' + name + '</td><td>' + realName + '</td>';
 			table.appendChild(tr);
 
-			//and just to clarify. we console log our variable to see the data used to build the table
-			console.log(herolist.length,ti,t1,t2);
+			document.getElementById('name').value = '';
+			document.getElementById('rname').value = '';
 		}
+
+	};
+
+	function addition(){
+		n = document.getElementById('name').value;
+		r = document.getElementById('rname').value;
+		new heros(r,n);
 	}
 
-	buildTB();
+	new heros('Peter Parker', 'Spider-Man');
+	new heros('Logan', 'Wolverine');
 </script>
 </body>
 </html>
