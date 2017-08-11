@@ -7,21 +7,35 @@
 <script>
 //Prototyping an Object
 //Create an Object
-function Person(name) {
-	this.name = name;
+function Person(f, l, a, e) {
+    this.firstName = f;
+    this.lastName = l;
+    this.age = a;
+    this.eyeColor = e;
 }
+
+var myFather = new Person("John", "Doe", 50, "blue");
+var myMother = new Person("Sally", "Rally", 48, "green");
+
+document.write("My father is " + myFather.age + ". My mother is " + myMother.age+"<br>");
 
 //build a method called sayHello for the Object called 'Person'
 Person.prototype.sayHello = function () {
-	document.write("Hi! I'm " + this.name);
+	document.write("Hi! I'm " + this.firstName+"<br>");
 };
 
 //Create new instances of 'Person'
 var person1 = new Person('Rose');
-var person2 = new Person('Ichabod');
 
 // call the Person sayHello method.
+
+myFather.sayHello();
 person1.sayHello();
+
+//or
+new Person('bill').sayHello();
+
 </script>
+
 </body>
 </html>
