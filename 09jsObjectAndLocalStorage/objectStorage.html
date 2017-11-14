@@ -86,71 +86,58 @@ tr:nth-child(odd){
 	</div>
 </div>
 <script>
-	if(localStorage.getItem("herolist") == null){
+	if(localStorage.getItem("heroes") == null){
 		herolist = [];
-	} else{
-		herolist = JSON.parse(localStorage.getItem("herolist"));
+	}else{
+		herolist = JSON.parse(localStorage.getItem("heroes"));
 	}
 
-	for (ti = 0; ti < herolist.length; ti++){
-		t1 = JSON.parse(localStorage.getItem("herolist"))[ti].hero;
-		t2 = JSON.parse(localStorage.getItem("herolist"))[ti].alias;
-		var table = document.getElementById("savedheroes");
-		var tr = document.createElement("tr");
-		tr.className = "herow";
-		tr.innerHTML = '<td>' + t1 + '</td><td>' + t2 + '</td>';
+	for (k in herolist){
+		table = document.getElementById("savedheroes");
+		tr = document.createElement('tr');
+		tr.innerHTML = "<td>"+herolist[k].hero+"</td><td>"+herolist[k].alias+"</td>";
 		table.appendChild(tr);
-		console.log(herolist.length,ti,t1,t2);
 	}
 
-	function heros( realName , name ){
-		this.realName = realName;
-		this.name = name;
-		var result = document.getElementById("result");
-		var li = document.createElement("li");
-		if (realName == 'Peter Parker'){
-			li.innerHTML = this.name + ', ' + this.name + '<br>does whatever a spider can';
-		} else if (name == 'Thor' || name == 'Captain America' || name == 'Black Widow'){
-			li.innerHTML = this.name + ' is an avenger';
-		} else {
-			li.innerHTML = this.name+'<br>'+this.realName;
-		}
-		result.appendChild(li);
-
-		superhero = {};
-		superhero['hero'] = name;
-		superhero['alias'] = realName;
-
+	function hero(heroname, realname){
 		checklist = [];
-
-		for (idh = 0; idh < herolist.length; ++idh){
-			checklist.push(herolist[idh].hero);
+		
+		for(i in herolist){
+			checklist.push(herolist[i].hero);
 		}
+		if(checklist.indexOf(heroname) == -1){
+			//create li
+			result = document.getElementById("result");
+			li = document.createElement('li');
+			li.innerHTML = heroname + "<br>" + realname;
+			result.appendChild(li);
 
-		if (checklist.indexOf(name) == -1){
-			herolist.push(superhero);
-			localStorage.setItem("herolist", JSON.stringify(herolist));
-
-			var table = document.getElementById("savedheroes");
-			var tr = document.createElement("tr");
-			tr.className = "herow";
-			tr.innerHTML = '<td>' + name + '</td><td>' + realName + '</td>';
+			//create table row
+			table = document.getElementById("savedheroes");
+			tr = document.createElement('tr');
+			tr.innerHTML = "<td>"+heroname+"</td><td>"+realname+"</td>";
 			table.appendChild(tr);
 
-			document.getElementById('name').value = '';
-			document.getElementById('rname').value = '';
-		}
+			document.getElementById("name").value = "";
+			document.getElementById("rname").value = "";
 
+			superhero = {
+				hero: heroname,
+				alias: realname
+			};
+
+			herolist.push(superhero);
+			jsonHeroList = JSON.stringify(herolist);
+			localStorage.setItem("heroes", jsonHeroList);
+		};
 	};
 
 	function addition(){
-		n = document.getElementById('name').value;
-		r = document.getElementById('rname').value;
-		new heros(r,n);
-	}
-
-	new heros('Peter Parker', 'Spider-Man');
-	new heros('Logan', 'Wolverine');
+		n = document.getElementById("name").value;
+		r = document.getElementById("rname").value;
+		console.log(n + " " + r);
+		hero(n,r);
+	};
 </script>
 </body>
 </html>
