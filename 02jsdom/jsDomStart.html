@@ -36,6 +36,25 @@
 	<img id="kit2" src="kitty.jpg" style="width:200px;">
 
 	<script>
+		a = document.getElementById("saywha").src;
+		b = document.getElementById("saywha").style.width;
+		c = document.getElementById("saywha").alt;
+		d = document.getElementById("saywha").className;
+		e = a + "<br>" + b + "<br>" + c + "<br>" + d;
+		document.getElementById("findImgSrc").innerHTML = e;
+		
+		f = document.getElementsByClassName("pclass");
+		for( g = 0; g < f.length; ++g){
+			tn = document.createTextNode(f[g].innerHTML);
+			br = document.createElement('br');
+			document.getElementById('pText').appendChild(tn);
+			document.getElementById('pText').appendChild(br);
+		}
+		document.getElementById("kit2").src = "kitten.jpg";
+		document.getElementById("kit2").style.border ="1px #ff0000 solid";
+		
+		h = document.querySelectorAll('p')[0].innerHTML;
+		document.getElementsByClassName('pFirst')[0].innerHTML = h;
 	</script>
 
 </body>
