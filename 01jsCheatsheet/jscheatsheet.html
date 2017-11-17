@@ -5,15 +5,19 @@
 </head>
 <body>
 <script type="text/javascript">
+//dev tools
 	//this is a comment
+
 	/* multi line 
 	comment */
+
 	//alert("hello world");
+
 	console.log("hi bob");
+
 	document.write("<h1>this renders as html</h1>");
 
 	x = 15;
-
 	y = 1;
 
 	//basic mathematics
@@ -590,6 +594,13 @@
 	}
 	document.write('<hr>');
 
+	document.write('<b>for in loop example</b><br>');
+	for (var i in beers){
+		document.write(i +': '+ beers[i] +'<br>');
+	}
+	document.write('<hr>');
+
+
 	//while loop
 	document.write('<b>While loop example</b><br>');
 	var bi = 0;
@@ -617,13 +628,10 @@
 		id: 1234
 	};
 
-	objKeyVal='';
-	for(key in person){
-		objKeyVal += person[key] + ' ';
-		document.write('<p>' + objKeyVal + '</p>');
+	for(v in person){
+		document.write('<p>' + v + '</p>');
 	}
 	document.write('<hr>');
-	document.write(objKeyVal);
 </script>
 </body>
 </html>
