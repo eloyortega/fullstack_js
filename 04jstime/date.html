@@ -4,47 +4,53 @@
 	<title>JS Cheat Sheet</title>
 </head>
 <body>
-<script type="text/javascript">
+<script>
 
+	//the date object
 	date = new Date();
 	document.write(date);
 	document.write('<br>');
+
+	//some popular method for date
 	document.write(date.toDateString());
 	document.write('<br>');
 	document.write(date.toLocaleDateString());
 	document.write('<br>');
 	document.write(date.toLocaleTimeString());
 	document.write('<br>');
+
+	//format a 12 hour timestamp
 	hours = date.getHours() % 12 || 12;
 	min = date.getMinutes();
 	document.write(hours+':'+min);
 	document.write('<hr>');
 
-	document.write(date.getDate() + 30);
-	document.write('<br>');
-
+	//set a date in the future
 	set = new Date();
 	set.setDate(date.getDate() + 30);
 	document.write(set.toDateString());
 	document.write('<br>');
 
-	// i=0;
-	// setInterval(function(){
-	// 	i+=5;
-	// 	console.log(i + " secs");
-	// },5000);
+	//run functions in a time interval
+	 i=0;
+	 setInterval(function(){
+	 	i+=5;
+	 	console.log(i + " secs");
+	 },5000);
 
-	StartTimer = function(){
+	//set and stop a timer
+	startTimer = function(){
 		timer = setInterval(function(){
 			date2 = new Date();
 			document.getElementById('timer').innerHTML = date2;
 		},1000);
 	}
 
-	StopTimer = function(){
+	stopTimer = function(){
 		clearInterval(timer);
 	}
-	
+
+	//set and stop a time delay
 	function delay() {
 		delayAlert = setTimeout(function() {
 			alert('that took 3 seconds');
@@ -59,8 +65,8 @@
 
 </script>
 <p id="timer"></p>
-<button onclick="StartTimer()">Start Timer</button>
-<button onclick="StopTimer()">Stop Timer</button>
+<button onclick="startTimer()">Start Timer</button>
+<button onclick="stopTimer()">Stop Timer</button>
 <button onclick="delay()">Trigger Alert</button>
 <button onclick="delayStop()">Stop Alert</button>
 </body>

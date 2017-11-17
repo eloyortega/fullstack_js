@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>js events</title>
 </head>
-
 <body>
 	<input type="text" id="fn" placeholder="First Name">
 	<br><br>
@@ -20,32 +18,36 @@
 	<hr>
 	<p>see full list of events: <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">here</a></p>
 	<script>
-		function processinputs() {
-			fName = document.getElementById('fn').value;
-			lName = document.getElementById('ln').value;
-			fullN = fName + " " + lName;
+
+		//just a function that takes values from both iputs and concatinates them into var full
+		function process() {
+			fn = document.getElementById('fn').value;
+			ln = document.getElementById('ln').value;
+			full = fn + " " + ln;
 		}
-		
+
+		//key release event
 		document.getElementById('fn').onkeyup = function(){
-			processinputs();
-			document.getElementById('keyValue').innerHTML = fullN;
+			process();
+			document.getElementById('keyValue').innerHTML = full;
 		}
 
 		document.getElementById('ln').onkeyup = function(){
-			processinputs();
-			document.getElementById('keyValue').innerHTML = fullN;
+			process();
+			document.getElementById('keyValue').innerHTML = full;
 		}
 
+		//click event
 		document.getElementById('clickEvent').onclick = function(){
-			processinputs();
-			document.getElementById('clickValue').innerHTML = fullN;
+			process();
+			document.getElementById('clickValue').innerHTML = full;
 		}
 
+		//hover event
 		document.getElementById('hoverEvent').onmouseover = function(){
-			processinputs();
-			document.getElementById('hoverValue').innerHTML = fullN;
+			process();
+			document.getElementById('hoverValue').innerHTML = full;
 		}
 	</script>
 </body>
-
 </html>

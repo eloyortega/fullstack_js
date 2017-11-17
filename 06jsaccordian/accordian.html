@@ -98,7 +98,7 @@
 
 		<h1>Tru Theme</h1>
 		<div class="ac tru">
-			<h3>Tru Title 1</h3>
+			 <h3>Tru Title 1</h3>
 			<div class="ac_content">
 				<div class="acleft">
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -161,80 +161,68 @@
 
 	<script>
 		//capture all the H3s...
-		var achead = document.querySelectorAll('.ac > H3');
+		var ach = document.querySelectorAll('.ac > H3');
 
 		//...loop through them and do the following
-		for (a = 0; a < achead.length; a++) {
+		for (a = 0; a < ach.length; a++) {
 
 			//1. look for the the class bru or tru to establish theme styles
-			//console.log(achead[a].parentElement.className.indexOf('bru'));
-			if (achead[a].parentElement.className.indexOf('bru') > -1) {
-				achead[a].style.backgroundImage = "url('bru-closed.jpg')";
-				achead[a].style.color = "#532997";
-				//console.log(achead[a].innerHTML + ' bru here');
-			} else if (achead[a].parentElement.className.indexOf('tru') > -1) {
-				achead[a].style.backgroundImage = "url('tru-closed.jpg')";
-				achead[a].style.color = "#005faf";
-				//console.log(achead[a].innerHTML + ' tru here');
+			if (ach[a].parentElement.className.indexOf('bru') > -1) {
+				ach[a].style.cssText = 'background-image:url("bru-closed.jpg"); color:#532997;';
+			} else {
+				ach[a].style.cssText = 'background-image:url("tru-closed.jpg"); color:#005faf;';
 			}
 
 			//2. bind a click event to toggle the display of the following sibling
 			// and restyle
-			achead[a].onclick = function() {
+			ach[a].onclick = function() {
 				var acStuff = this.nextElementSibling;
-				//console.log(acStuff.style.display);
-				if (acStuff.style.display === 'none' || acStuff.style.display === '') {
+				var ad = acStuff.style.display;
+				if (ad == "none" || ad == "") {
 					acStuff.style.display = 'block';
 					var bg = this.style.backgroundImage.replace('closed', 'opened');
 					this.style.backgroundImage = bg;
-					//console.log('open');
 				} else {
 					acStuff.style.display = 'none';
 					var bg = this.style.backgroundImage.replace('opened', 'closed');
 					this.style.backgroundImage = bg;
-					//console.log('close');
 				}
 			};
 
 		}
 
 		// collpase and expand links dynamically for each accordian
+
+		//first create the links dynamically for each accordion container
 		var acc = document.querySelectorAll('.accontainer');
-		for (b = 0; b < acc.length; b++) {
-			var allcontainer = document.createElement("P");
-			acc[b].appendChild(allcontainer);
-			acc[b].lastChild.innerHTML = '<b class="cola">collapse all</b> | <b class="expa">expand all</b>';
+		for (var i = 0; i < acc.length; i++) {
+			var dl = document.createElement("p");
+			dl.innerHTML = '<b class="cola">collapse all</b> | <b class="expa">expand all</b>';
+			acc[i].appendChild(dl);
+			
 		}
 
 		//trigger click on expanded accordians to collapse
-		var cBtn = document.querySelectorAll('.cola');
-		for (c = 0; c < cBtn.length; c++) {
-			cBtn[c].onclick = function() {
-				ch3 = this.parentElement.parentElement.querySelectorAll('.ac > h3');
-				for (d = 0; d < ch3.length; d++) {
-					var acStuff = ch3[d].nextElementSibling;
-					if (acStuff.style.display === 'block') {
-						ch3[d].click();
+		var btn = document.querySelectorAll('.cola, .expa');
+		for (var i = 0; i < btn.length; i++) {
+			btn[i].onclick = function(){
+				var acStuff = this.parentElement.parentElement.querySelectorAll('.ac > .ac_content');
+				for ( var i = 0; i < acStuff.length; ++i ){
+					var ph = acStuff[i].previousElementSibling;
+					if (this.className.indexOf("expa") > -1) {
+						dy = 'block';
+						bg = ph.style.backgroundImage.replace('closed', 'opened');
+					} else {
+						dy = 'none';
+						bg = ph.style.backgroundImage.replace('opened', 'closed');
 					}
+					acStuff[i].style.display = dy;
+					ph.style.backgroundImage = bg;
 				}
-
 			}
 		}
 
-		//trigger click on collapsed accordians to expand
-		var eBtn = document.querySelectorAll('.expa');
-		for (c = 0; c < eBtn.length; c++) {
-			eBtn[c].onclick = function() {
-				eh3 = this.parentElement.parentElement.querySelectorAll('.ac > h3');
-				for (e = 0; e < eh3.length; e++) {
-					var acStuff = eh3[e].nextElementSibling;
-					if (acStuff.style.display === 'none' || acStuff.style.display === '') {
-						eh3[e].click();
-					}
-				}
 
-			}
-		}
 	</script>
 </body>
 

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>js events</title>
 </head>
-
 <body>
 	<input type="text" id="fn" placeholder="First Name">
 	<br><br>
@@ -19,35 +17,7 @@
 	<p id="hoverEvent">Hover value: <b id="hoverValue"></b></p>
 	<hr>
 	<p>see full list of events: <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">here</a></p>
-
 	<script>
-		function pi(){
-			fn = document.getElementById("fn").value;
-			ln = document.getElementById("ln").value;
-			full= fn + " " + ln;
-		}
-		
-		document.getElementById("fn").onkeyup = function(){
-			pi();
-			document.getElementById("keyValue").innerHTML = full;
-		}
-		
-		document.getElementById("ln").onkeyup = function(){
-			pi();
-			document.getElementById("keyValue").innerHTML = full;
-		}
-		
-		document.getElementById("clickEvent").onclick = function(){
-			pi();
-			document.getElementById("clickValue").innerHTML = full;
-		}
-		
-		document.getElementById("hoverEvent").onmouseover = function(){
-			pi();
-			document.getElementById("hoverValue").innerHTML = full;
-		}
-		
 	</script>
 </body>
-
 </html>

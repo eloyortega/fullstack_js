@@ -5,57 +5,30 @@
 </head>
 
 <body>
+	<p>see full list of style object <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">here</a></p>
+	<p>see full list of DOM Properties Methods <a href="https://www.w3schools.com/jsref/dom_obj_all.asp">here</a></p>
 
-	<img src="kitty.jpg" id="saywha" class="imgclass" style="width:200px;" alt="say whaaaaaaa!">
+	<img src="kitty.jpg" id="saywhat" class="imgclass" style="width:200px;" alt="say whaaaaaaa!">
+
+	<img id="kit2" src="kitty.jpg" style="width:200px;">
+
+	<p><b id="findImgSrc"></b></p>
+
+	<hr>
+
 	<p>paragraph 1</p>
 	<p class="pclass">paragraph 2</p>
 	<p class="pclass">paragraph 3</p>
 	<p class="pNotThis">paragraph 4</p>
-	<p>see full list of style object <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">here</a></p>
-	<p>see full list of DOM Properties Methods <a href="https://www.w3schools.com/jsref/dom_obj_all.asp">here</a></p>
-
-	<p>
-		<b id="findImgSrc"></b>
-	</p>
 
 	<hr>
 
-	<p>
-		<b id="pText"></b>
-	</p>
+	<div id="pText"></div>
 
 	<hr>
 
-	<p>
-		<b class="pFirst"></b>
-	</p>
-
-	<p id="original">Thing 1</p>
-	<div id="clone"></div>
-	
-	<img id="kit2" src="kitty.jpg" style="width:200px;">
-
+	<p><b class="pFirst"></b></p>
 	<script>
-		a = document.getElementById("saywha").src;
-		b = document.getElementById("saywha").style.width;
-		c = document.getElementById("saywha").alt;
-		d = document.getElementById("saywha").className;
-		e = a + "<br>" + b + "<br>" + c + "<br>" + d;
-		document.getElementById("findImgSrc").innerHTML = e;
-		
-		f = document.getElementsByClassName("pclass");
-		for( g = 0; g < f.length; ++g){
-			tn = document.createTextNode(f[g].innerHTML);
-			br = document.createElement('br');
-			document.getElementById('pText').appendChild(tn);
-			document.getElementById('pText').appendChild(br);
-		}
-		document.getElementById("kit2").src = "kitten.jpg";
-		document.getElementById("kit2").style.border ="1px #ff0000 solid";
-		
-		h = document.querySelectorAll('p')[0].innerHTML;
-		document.getElementsByClassName('pFirst')[0].innerHTML = h;
 	</script>
-
 </body>
 </html>

@@ -517,7 +517,7 @@
 	//if statement
 	if((myColor == "red") || (myColor == "blue") ){
 		document.write(myColor + " is my favorite color!");
-	} else if (myColor == "yellow") {
+	} else if (myColor == "orange") {
 		document.write(myColor + " is my least favorite color!");
 	} else {
 		document.write(myColor + " is not my favorite color!");
@@ -530,7 +530,7 @@
 		case 'blue':
 			document.write(myColor + " is my favorite color!");
 			break;
-		case 'yellow':
+		case 'orange':
 			document.write(myColor + " is my least favorite color!");
 			break;
 		default:
@@ -579,6 +579,7 @@
 
 	//Loops
 	document.write('<b>loops execute a set amount of times</b><br>');
+
 	//basic for loop example
 	document.write('<b>For loop example 1</b><br>');
 	for(var i = 0; i < 10; ++i){
@@ -594,33 +595,33 @@
 	}
 	document.write('<hr>');
 
+	//for in loop
 	document.write('<b>for in loop example</b><br>');
 	for (var i in beers){
 		document.write(i +': '+ beers[i] +'<br>');
 	}
 	document.write('<hr>');
 
-
 	//while loop
 	document.write('<b>While loop example</b><br>');
-	var bi = 0;
-	while(bi < beers.length){
-		document.write(bi +': '+ beers[bi] +'<br>');
-		++bi;
+	var i = 0;
+	while(i < beers.length){
+		document.write(i +': '+ beers[i] +'<br>');
+		++i;
 	};
 	document.write('<hr>');
 
 	//do while loop
 	document.write('<b>Do/While loop example</b><br>');
-	var bidx= 0;
+	var i= 0;
 	do{
-		document.write(bidx +': '+ beers[bidx] +'<br>');
-		++bidx;
+		document.write(i +': '+ beers[i] +'<br>');
+		++i;
 	}
-	while(bidx < beers.length);
+	while(i < beers.length);
 	document.write('<hr>');
 
-	//for/in loop
+	//for in loop with objects
 	document.write('<b>For/In loop example</b>');
 	person = {
 		fname:'Peter',
@@ -631,7 +632,6 @@
 	for(v in person){
 		document.write('<p>' + v+": "+person[v] + '</p>');
 	}
-	document.write('<hr>');
 </script>
 </body>
 </html>
