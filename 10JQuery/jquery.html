@@ -32,8 +32,10 @@ $(document).ready(function() {
 		$("#joe").fadeIn();
 	});
 
+	//another way to add a hover event
 	$("#animateThis").hover(
 		function() {
+			//animate with jquery
 			$(this).animate({
 				width: "+=300px"
 			});
@@ -45,11 +47,14 @@ $(document).ready(function() {
 		}
 	);
 
+	//ways to index items
 	var p = $('p')[0];
 	$(p).css('color', '#f00');
 	$($('p')[1]).css('color', '#999');
 	$('p').eq(2).css('color', '#ccc');
 
+
+	click events and various ways to show and hide elements
 	$("#click").click(function() {
 //		$("#reaction").hide();
 //		$("#reaction").show(2000);

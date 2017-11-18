@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>js</title>
 </head>
 <body>
-<script>
-//Prototyping an Object
-//Create an Object
-function Person(f, l, a, e) {
-    this.firstName = f;
-    this.lastName = l;
-    this.age = a;
-    this.eyeColor = e;
-}
+	<script>
+		//Prototyping an Object
+		//Create an Object
+		function Person(f, l, a, e) {
+			this.firstName = f;
+			this.lastName = l;
+			this.age = a;
+			this.eyeColor = e;
+		}
 
-var myFather = new Person("John", "Doe", 50, "blue");
-var myMother = new Person("Sally", "Rally", 48, "green");
+		//build a method called sayHello for the Object called 'Person'
+		Person.prototype.sayHello = function() {
+			document.write("Hi! I'm " + this.firstName + "<br>");
+		};
 
-document.write("My father is " + myFather.age + ". My mother is " + myMother.age+"<br>");
+		//Create new instances of 'Person'
+		var me = new Person('Rose');
+		var dad = new Person("John", "Doe", 50, "blue");
+		var mom = new Person("Sally", "Rally", 48, "green");
 
-//build a method called sayHello for the Object called 'Person'
-Person.prototype.sayHello = function () {
-	document.write("Hi! I'm " + this.firstName+"<br>");
-};
+		// test objects
+		document.write("My father is " + dad.age + ". My mother is " + mom.age + "<br>");
 
-//Create new instances of 'Person'
-var person1 = new Person('Rose');
+		// test prototype of sayHello method.
+		me.sayHello();
+		dad.sayHello();
 
-// call the Person sayHello method.
-
-myFather.sayHello();
-person1.sayHello();
-
-//or
-new Person('bill').sayHello();
-
-</script>
-
+		//or
+		new Person('bill').sayHello();
+	</script>
 </body>
 </html>
