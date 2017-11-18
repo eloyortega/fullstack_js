@@ -90,12 +90,14 @@ tr:nth-child(odd){
 	</div>
 </div>
 <script>
+	//set herolist to either a the browser stored array or an empty array
 	if(localStorage.getItem("heroes") == null){
 		herolist = [];
 	}else{
 		herolist = JSON.parse(localStorage.getItem("heroes"));
 	}
 
+	//loop through herolist and populate the table
 	for (k in herolist){
 		table = document.getElementById("savedheroes");
 		tr = document.createElement('tr');
@@ -103,13 +105,19 @@ tr:nth-child(odd){
 		table.appendChild(tr);
 	}
 
+	//function to run when user inputs a new hero
 	function hero(heroname, realname){
+		//create a empty list to check if hero was already entered
 		checklist = [];
-		
+
+		//populate checklist with names from herolist
 		for(i in herolist){
 			checklist.push(herolist[i].hero);
 		}
+
+		// if input doesn't match any name already entered, then...
 		if(checklist.indexOf(heroname) == -1){
+			
 			//create li
 			result = document.getElementById("result");
 			li = document.createElement('li');
@@ -122,24 +130,27 @@ tr:nth-child(odd){
 			tr.innerHTML = "<td>"+heroname+"</td><td>"+realname+"</td>";
 			table.appendChild(tr);
 
+			//reset form values
 			document.getElementById("name").value = "";
 			document.getElementById("rname").value = "";
 
+			//set user input to an object
 			superhero = {
 				hero: heroname,
 				alias: realname
 			};
 
+			//push the data into herolist and store locally to browser
 			herolist.push(superhero);
 			jsonHeroList = JSON.stringify(herolist);
 			localStorage.setItem("heroes", jsonHeroList);
 		};
 	};
 
+	//function to capture user input as parameters in the above code
 	function addition(){
 		n = document.getElementById("name").value;
 		r = document.getElementById("rname").value;
-		console.log(n + " " + r);
 		hero(n,r);
 	};
 </script>
