@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>jQuery, Event Handling and JS Time</title>
 
@@ -26,30 +25,6 @@
 				var username = $("#userName2").val();
 				$('#user2').html(username);
 			});
-
-			//trigger fadeout of 1 element by mousing over another
-			$("#bob").mouseover(function() {
-				$("#joe").fadeOut(2000, 'easeOutBounce');
-			});
-
-			$("#bob").mouseleave(function() {
-				$("#joe").fadeIn();
-			});
-
-			//another way to add a hover event
-			$("#animateThis").hover(
-				function() {
-					//animate with jquery
-					$(this).animate({
-						width: "+=300px"
-					});
-				},
-				function() {
-					$(this).animate({
-						width: "-=300px"
-					});
-				}
-			);
 
 			//ways to index items
 			var p = $('p')[0];
@@ -81,12 +56,11 @@
 				});
 			});
 
-			//doubleclick
 			$("#click2").dblclick(function() {
 				$("#reaction2").html('<p>double click</p>');
 			});
 
-			//use an each to loop this data
+			//loop through dataset and populate an html table
 			people = {
 				'John': {
 					age: 25,
@@ -134,7 +108,7 @@
 				$('#listPeople').append('<tr><td>' + key + '</td><td>' + value.age + '</td><td>' + value.gender + '</td></tr>');
 			});
 
-			//some date features in jQuery
+			//create some JS date objects
 			now = new Date();
 			yest = new Date();
 			day28 = new Date();
@@ -149,9 +123,9 @@
 
 			$("#thisDate").html('<p>' + now + '</p><p>' + yest + '</p><p>' + day28 + '</p>');
 
-			//transversal
+			//transversals
 			$('.clicker').click(function() {
-				$(this).parents('#commonAncestor').find('.targetContainer > div > div p').css({
+				$(this).parents('#commonAncestor').find('.targetContainer div div p').css({
 					color: '#f00',
 					background: '#ccc'
 				});
@@ -161,15 +135,16 @@
 
 	</script>
 </head>
-
 <body>
 	<input type="text" id="userName" placeholder="username">
 	<br><br>
 	<div id="user"></div>
 	<br><br>
+
 	<input type="text" id="userName2" placeholder="username">
 	<br><br>
 	<div id="user2"></div>
+
 	<div id="bob">
 		<h1>Mouse in/out</h1>
 	</div>
@@ -194,6 +169,14 @@
 	<div id="reaction2">
 		<p>affect this</p>
 	</div>
+
+	<table id="listPeople">
+		<tr>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Gender</th>
+		</tr>
+	</table>
 
 	<h1>Date Formatting</h1>
 	<div id="thisDate">
@@ -226,6 +209,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="targetContainer">
+		<div>
+			<div>
+				<p>or here</p>
+			</div>
+		</div>
+	</div>
 </body>
-
 </html>
