@@ -142,7 +142,7 @@ $(document).ready(function() {
 	$("#thisDate").html('<p>' + now + '</p><p>' + yest + '</p><p>' + day28 + '</p>');
 
 	$('.clicker').click(function() {
-		$(this).parents('#commonAncestor').find('.targetContainer > div > div p').css({
+		$(this).parents('#commonAncestor').find('.targetContainer div div p').css({
 			color: '#f00',
 			background: '#ccc'
 		});
@@ -157,9 +157,12 @@ $(document).ready(function() {
 	<br><br>
 	<div id="user"></div>
 	<br><br>
+
 	<input type="text" id="userName2" placeholder="username">
 	<br><br>
 	<div id="user2"></div>
+
+
 	<div id="bob">
 		<h1>Mouse in/out</h1>
 	</div>
@@ -170,14 +173,6 @@ $(document).ready(function() {
 	<div id="animateThis" style="width:20px; overflow:hidden; background-color:#ccc;">
 		<h1>this gets animated</h1>
 	</div>
-
-	<table id="listPeople">
-		<tr>
-			<th>Name</th>
-			<th>Age</th>
-			<th>Gender</th>
-		</tr>
-	</table>
 
 	<div id="click">
 		<h1>Click This</h1>
@@ -192,6 +187,14 @@ $(document).ready(function() {
 	<div id="reaction2">
 		<p>affect this</p>
 	</div>
+
+	<table id="listPeople">
+		<tr>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Gender</th>
+		</tr>
+	</table>
 
 	<h1>Date Formatting</h1>
 	<div id="thisDate">
@@ -213,6 +216,13 @@ $(document).ready(function() {
 					<p>and affect here</p>
 				</div>
 				<p>but not here</p>
+			</div>
+		</div>
+	</div>
+	<div class="targetContainer">
+		<div>
+			<div>
+				<p>or here</p>
 			</div>
 		</div>
 	</div>
