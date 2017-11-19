@@ -1,120 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
 <head>
 	<title>jQuery, Event Handling and JS Time</title>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
-	<script>
-		//$(SELECTOR).METHOD( function(){DO THIS} );
-		$(document).ready(function() {
-			$("#userName").keyup(function() {
-				un = $(this).val();
-				$("#user").html("<b>" + un + "</b>");
-			});
-
-			$("#userName2").keypress(function() {
-				u2 = $(this).val();
-				$("#user2").html("<b>" + u2 + "</b>");
-			});
-
-			$("#bob").mouseover(function() {
-				$("#joe").fadeOut();
-			});
-
-			$("#bob").mouseleave(function() {
-				$("#joe").fadeIn();
-			});
-
-			$("#animateThis").hover(function() {
-				$(this).animate({
-					width: "+=300px"
-				});
-			}, function() {
-				$(this).animate({
-					width: "-=300px"
-				});
-			});
-
-			people = {
-				'John': {
-					age: 25,
-					gender: 'boy'
-				},
-				'Jessie': {
-					age: 30,
-					gender: 'girl'
-				},
-				'Johanna': {
-					age: 28,
-					gender: 'girl'
-				},
-				'Joy': {
-					age: 15,
-					gender: 'girl'
-				},
-				'Mary': {
-					age: 28,
-					gender: 'girl'
-				},
-				'Peter': {
-					age: 95,
-					gender: 'boy'
-				},
-				'Sebastian': {
-					age: 50,
-					gender: 'boy'
-				},
-				'Erika': {
-					age: 27,
-					gender: 'girl'
-				},
-				'Patrick': {
-					age: 40,
-					gender: 'boy'
-				},
-				'Samantha': {
-					age: 60,
-					gender: 'girl'
-				}
-			};
-			
-			$.each(people,function(k,v){
-				$("#listPeople").append("<tr><td>"+k+"</td><td>"+v.age+"</td><td>"+v.gender+"</td></tr>");
-			});
-			
-			$("#click").click( function(){
-//				$("#reaction").hide(2000);
-//				$("#reaction").show(2000);
-//				$("#reaction").toggle(2000);
-//				$("#reaction").fadeOut(2000);
-//				$("#reaction").fadeIn(2000);
-				$("#reaction").fadeToggle(2000);
-				
-			});
-			$("#click2").dblclick( function(){
-				$("#reaction2").fadeToggle(2000);
-			});
-			$(".clicker").click(function(){
-				$(this).parents("#commonAncestor").find(".targetContainer > div > div > p").css({
-					color: "#f00",
-					background:"#ccc"
-				});
-			});
-			
-		});
-
-	</script>
+	<script></script>
 </head>
-
 <body>
 	<input type="text" id="userName" placeholder="username">
 	<br><br>
 	<div id="user"></div>
 	<br><br>
+
 	<input type="text" id="userName2" placeholder="username">
 	<br><br>
 	<div id="user2"></div>
+
 	<div id="bob">
 		<h1>Mouse in/out</h1>
 	</div>
@@ -125,14 +27,6 @@
 	<div id="animateThis" style="width:20px; overflow:hidden; background-color:#ccc;">
 		<h1>this gets animated</h1>
 	</div>
-
-	<table id="listPeople">
-		<tr>
-			<th>Name</th>
-			<th>Age</th>
-			<th>Gender</th>
-		</tr>
-	</table>
 
 	<div id="click">
 		<h1>Click This</h1>
@@ -148,13 +42,27 @@
 		<p>affect this</p>
 	</div>
 
+	<table id="listPeople">
+		<tr>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Gender</th>
+		</tr>
+	</table>
+
 	<h1>Date Formatting</h1>
 	<div id="thisDate">
 	</div>
 
-	<h1>Date Calls</h1>
-	<ul id="dateList">
-	</ul>
+	<table id="listPeople">
+		<tr>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Gender</th>
+		</tr>
+	</table>
+
+	<h1>Transversal</h1>
 
 	<div id="commonAncestor">
 		<div>
@@ -173,7 +81,12 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="targetContainer">
+		<div>
+			<div>
+				<p>or here</p>
+			</div>
+		</div>
+	</div>
 </body>
-
 </html>
