@@ -6,7 +6,9 @@
 
 <body>
 	<p>see full list of style object <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">here</a></p>
-	<p>see full list of DOM Properties Methods <a href="https://www.w3schools.com/jsref/dom_obj_all.asp">here</a></p>
+	<p>see full list of DOM Properties Methods 
+		<a href="https://www.w3schools.com/jsref/dom_obj_all.asp">here</a>
+	</p>
 
 	<img src="kitty.jpg" id="saywhat" class="imgclass" style="width:200px;" alt="say whaaaaaaa!">
 
@@ -33,6 +35,7 @@
 		console.dir(document);
 
 		//get element by id and find values from it
+		console.dir(document.getElementById('saywhat'));
 		a = document.getElementById('saywhat').src;
 		b = document.getElementById('saywhat').className;
 		c = document.getElementById('saywhat').style.width;
@@ -47,9 +50,8 @@
 		//find element by class
 		f = document.getElementsByClassName("pclass");
 		for (g = 0; g < f.length; ++g) {
-			p = document.createElement("p");
-			p.innerHTML = g + ": " + f[g].innerHTML;
-			document.getElementById("pText").appendChild(p);
+			p = document.getElementById("pText");
+			p.innerHTML += "<p>" + g + ": " + f[g].innerHTML + "<p>";
 		}
 
 		//find element by css selector

@@ -168,7 +168,7 @@
 				ach[a].style.cssText = 'background-image:url("bru-closed.jpg"); color:#532997;';
 			} else {
 				ach[a].style.cssText = 'background-image:url("tru-closed.jpg"); color:#005faf;';
-			}
+			};
 
 			//2. bind a click event to toggle the display of the following sibling
 			// and restyle
@@ -183,21 +183,17 @@
 					acStuff.style.display = 'none';
 					var bg = this.style.backgroundImage.replace('opened', 'closed');
 					this.style.backgroundImage = bg;
-				}
+				};
 			};
-
-		}
+		};
 
 		// collpase and expand links dynamically for each accordian
 
 		//first create the links dynamically for each accordion container
 		var acc = document.querySelectorAll('.accontainer');
 		for (var i = 0; i < acc.length; i++) {
-			var dl = document.createElement("p");
-			dl.innerHTML = '<b class="cola">collapse all</b> | <b class="expa">expand all</b>';
-			acc[i].appendChild(dl);
-			
-		}
+			acc[i].innerHTML += '<p><b class="cola">collapse all</b> | <b class="expa">expand all</b></p>';
+		};
 
 		//trigger click on expanded accordians to collapse
 		var btn = document.querySelectorAll('.cola, .expa');
@@ -212,13 +208,12 @@
 					} else {
 						dy = 'none';
 						bg = ph.style.backgroundImage.replace('opened', 'closed');
-					}
+					};
 					acStuff[i].style.display = dy;
 					ph.style.backgroundImage = bg;
-				}
-			}
-		}
-
+				};
+			};
+		};
 
 	</script>
 </body>

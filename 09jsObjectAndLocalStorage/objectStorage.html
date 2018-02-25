@@ -1,158 +1,176 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super List</title>
+	<title>Super List</title>
 </head>
 <style type="text/css">
-*{
-	font-family: sans-serif;
-	color:#666;
-}
-body{
-	background-color: #f3f3f3;
-	font-size: 16px;
-}
-input{
-	font-size: 20px;
-	padding:10px;
-}
-button{
-	font-size: 20px;
-	padding:10px;
-	border-radius: 10px;
-	background: #fff;
-}
-ul {
-list-style: none
-}
-li:before{
-content: "\25AA";
-color:#f00;
-font-size: 30px;
-vertical-align: super;
-display: inline-block;
-width: 1em;
-margin-left: -1em
-}
-li, p, td{
-	font-size: 18px;
-}
-table{
-	width:100%;
-	background-color: #fff;
-}
-th{
-	text-align: left;
-	padding:10px;
-	background-color: #ddd;
-}
-td{
-	text-align: left;
-	padding:10px;
-}
-tr{
-	background-color: #fafafa;
-}
-tr:nth-child(odd){
-	background-color: #f3f3f3;
-}
-.container{
-	position: relative;
-	width:500px;
-	margin: 0px auto;
-	padding:1px 20px 20px 20px;
-	background-color: #ddd;
-}
+	* {
+		font-family: sans-serif;
+		color: #666;
+	}
+
+	body {
+		background-color: #f3f3f3;
+		font-size: 16px;
+	}
+
+	input {
+		font-size: 20px;
+		padding: 10px;
+	}
+
+	button {
+		font-size: 20px;
+		padding: 10px;
+		border-radius: 10px;
+		background: #fff;
+	}
+
+	ul {
+		list-style: none
+	}
+
+	li:before {
+		content: "\25AA";
+		color: #f00;
+		font-size: 30px;
+		vertical-align: super;
+		display: inline-block;
+		width: 1em;
+		margin-left: -1em
+	}
+
+	li,
+	p,
+	td {
+		font-size: 18px;
+	}
+
+	table {
+		width: 100%;
+		background-color: #fff;
+	}
+
+	th {
+		text-align: left;
+		padding: 10px;
+		background-color: #ddd;
+	}
+
+	td {
+		text-align: left;
+		padding: 10px;
+	}
+
+	tr {
+		background-color: #fafafa;
+	}
+
+	tr:nth-child(odd) {
+		background-color: #f3f3f3;
+	}
+
+	.container {
+		position: relative;
+		width: 500px;
+		margin: 0px auto;
+		padding: 1px 20px 20px 20px;
+		background-color: #ddd;
+	}
 </style>
+
 <body>
-<div class="container">
-	<h1>SuperHero List</h1>
-	<hr>
-	<input type="text" id="name" placeholder="Superhero">
-	<input type="text" id="rname" placeholder="Real Name">
-	<br><br>
-	<button onclick="addition()">add to list</button>
-	<button onclick="localStorage.clear(), location.reload()">purge archives</button>
-	<br><br>
-	<div>
-		<h2>My Favorite Heroes:</h2>
-		<ul id="result"></ul>
+	<div class="container">
+		<h1>SuperHero List</h1>
+		<hr>
+		<input type="text" id="name" placeholder="Superhero">
+		<input type="text" id="rname" placeholder="Real Name">
+		<br><br>
+		<button onclick="addition()">add to list</button>
+		<button onclick="localStorage.clear(), location.reload()">purge archives</button>
+		<br><br>
+		<div>
+			<h2>My Favorite Heroes:</h2>
+			<ul id="result"></ul>
+		</div>
+		<hr>
+		<div>
+			<h2>Heroes Archives:</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>HERO</th>
+						<th>ALIAS</th>
+					</tr>
+				</thead>
+				<tbody id="savedheroes">
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<hr>
-	<div>
-		<h2>Heroes Archives:</h2>
-		<table id="savedheroes">
-			<tr>
-				<th>HERO</th>
-				<th>ALIAS</th>
-			</tr>
-		</table>
-	</div>
-</div>
-<script>
-	//set herolist to either a the browser stored array or an empty array
-	if(localStorage.getItem("heroes") == null){
-		herolist = [];
-	}else{
-		herolist = JSON.parse(localStorage.getItem("heroes"));
-	}
+	<script>
+		function hero(heroname, realname) {
 
-	//loop through herolist and populate the table
-	for (k in herolist){
-		table = document.getElementById("savedheroes");
-		tr = document.createElement('tr');
-		tr.innerHTML = "<td>"+herolist[k].hero+"</td><td>"+herolist[k].alias+"</td>";
-		table.appendChild(tr);
-	}
+			//set herolist to either a the browser stored array or an empty array
+			if (localStorage.getItem("heroes") == null) {
+				herolist = [];
+			} else {
+				herolist = JSON.parse(localStorage.getItem("heroes"));
+			};
 
-	//function to run when user inputs a new hero
-	function hero(heroname, realname){
-		//create a empty list to check if hero was already entered
-		checklist = [];
+			//create a empty list to check if hero was already entered
+			checklist = [];
 
-		//populate checklist with names from herolist
-		for(i in herolist){
-			checklist.push(herolist[i].hero);
-		}
+			//populate checklist with names from herolist
+			for (i in herolist) { checklist.push(herolist[i].hero); };
 
-		// if input doesn't match any name already entered, then...
-		if(checklist.indexOf(heroname) == -1){
-			
-			//create li
-			result = document.getElementById("result");
-			li = document.createElement('li');
-			li.innerHTML = heroname + "<br>" + realname;
-			result.appendChild(li);
-
-			//create table row
 			table = document.getElementById("savedheroes");
-			tr = document.createElement('tr');
-			tr.innerHTML = "<td>"+heroname+"</td><td>"+realname+"</td>";
-			table.appendChild(tr);
+
+			// if input doesn't match any name already entered, then...
+			if (checklist.indexOf(heroname) == -1 && heroname != "" && heroname != null ) {
+				//set user input to an object
+				superhero = {
+					hero: heroname,
+					alias: realname
+				};
+
+				//push the data into herolist and store locally to browser
+				herolist.push(superhero);
+				jsonHeroList = JSON.stringify(herolist);
+				localStorage.setItem("heroes", jsonHeroList);
+				herolist = JSON.parse(localStorage.getItem("heroes"));
+
+				//create li
+				result = document.getElementById("result");
+				result.innerHTML += "<li>" + heroname + "<br>" + realname + "</li>";
+
+				//create table row
+				table.innerHTML = '';
+			} else{
+				table.innerHTML = '';
+			};
+
+			for (i in herolist) {
+			table.innerHTML += `
+			<tr>
+				<td>` + herolist[i].hero + `</td>
+				<td>` + herolist[i].alias + `</td>
+			</tr>`;
+			}
 
 			//reset form values
 			document.getElementById("name").value = "";
 			document.getElementById("rname").value = "";
-
-			//set user input to an object
-			superhero = {
-				hero: heroname,
-				alias: realname
-			};
-
-			//push the data into herolist and store locally to browser
-			herolist.push(superhero);
-			jsonHeroList = JSON.stringify(herolist);
-			localStorage.setItem("heroes", jsonHeroList);
 		};
-	};
 
-	//function to capture user input as parameters in the above code
-	function addition(){
-		n = document.getElementById("name").value;
-		r = document.getElementById("rname").value;
-		hero(n,r);
-	};
-</script>
+		//function to capture user input as parameters in the above code
+		function addition() {
+			n = document.getElementById("name").value;
+			r = document.getElementById("rname").value;
+			hero(n, r);
+		};
+
+		addition();
+	</script>
 </body>
 </html>
