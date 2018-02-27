@@ -140,7 +140,7 @@
 		</div>
 		<div class="ac tru">
 			<h3>Min Syntax</h3>
-			<div>
+			<div class="ac_content">
 				<p>this is the only code needed to make an accordian</p>
 				<xmp>
 					<div class="accontainer">
@@ -157,12 +157,18 @@
 	</div>
 
 	<script>
+		//first create the links dynamically for each accordion container
+		var acc = document.querySelectorAll('.accontainer');
+
+		for (var i = 0; i < acc.length; i++) {
+			acc[i].innerHTML += '<p><b class="cola">collapse all</b> | <b class="expa">expand all</b></p>';
+		};
+
 		//capture all the H3s...
 		var ach = document.querySelectorAll('.ac > H3');
 
 		//...loop through them and do the following
 		for (a = 0; a < ach.length; a++) {
-
 			//1. look for the the class bru or tru to establish theme styles
 			if (ach[a].parentElement.className.indexOf('bru') > -1) {
 				ach[a].style.cssText = 'background-image:url("bru-closed.jpg"); color:#532997;';
@@ -170,47 +176,39 @@
 				ach[a].style.cssText = 'background-image:url("tru-closed.jpg"); color:#005faf;';
 			};
 
-			//2. bind a click event to toggle the display of the following sibling
-			// and restyle
+			function dynamicStyle(x){
+				if(x == true){
+					display = "block";
+					bg1 = "closed";
+					bg2 = "opened";
+				} else{
+					display = "none";
+					bg1 = "opened";
+					bg2 = "closed";
+				}
+			}
+
+			//2. bind a click event to toggle the display of the following sibling and restyle
 			ach[a].onclick = function() {
 				var acStuff = this.nextElementSibling;
 				var ad = acStuff.style.display;
-				if (ad == "none" || ad == "") {
-					acStuff.style.display = 'block';
-					var bg = this.style.backgroundImage.replace('closed', 'opened');
-					this.style.backgroundImage = bg;
-				} else {
-					acStuff.style.display = 'none';
-					var bg = this.style.backgroundImage.replace('opened', 'closed');
-					this.style.backgroundImage = bg;
-				};
+				dynamicStyle(ad != 'block');
+				acStuff.style.display = display;
+				this.style.backgroundImage = this.style.backgroundImage.replace(bg1,bg2);
 			};
-		};
-
-		// collpase and expand links dynamically for each accordian
-
-		//first create the links dynamically for each accordion container
-		var acc = document.querySelectorAll('.accontainer');
-		for (var i = 0; i < acc.length; i++) {
-			acc[i].innerHTML += '<p><b class="cola">collapse all</b> | <b class="expa">expand all</b></p>';
 		};
 
 		//trigger click on expanded accordians to collapse
 		var btn = document.querySelectorAll('.cola, .expa');
 		for (var i = 0; i < btn.length; i++) {
 			btn[i].onclick = function(){
+				dynamicStyle(this.className.indexOf("expa") > -1);
 				var acStuff = this.parentElement.parentElement.querySelectorAll('.ac > .ac_content');
+				console.log(acStuff);
 				for ( var i = 0; i < acStuff.length; ++i ){
 					var ph = acStuff[i].previousElementSibling;
-					if (this.className.indexOf("expa") > -1) {
-						dy = 'block';
-						bg = ph.style.backgroundImage.replace('closed', 'opened');
-					} else {
-						dy = 'none';
-						bg = ph.style.backgroundImage.replace('opened', 'closed');
-					};
-					acStuff[i].style.display = dy;
-					ph.style.backgroundImage = bg;
+					acStuff[i].style.display = display;
+					ph.style.backgroundImage = ph.style.backgroundImage.replace(bg1,bg2);
 				};
 			};
 		};
