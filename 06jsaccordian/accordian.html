@@ -140,7 +140,7 @@
 		</div>
 		<div class="ac tru">
 			<h3>Min Syntax</h3>
-			<div class="ac_content">
+			<div>
 				<p>this is the only code needed to make an accordian</p>
 				<xmp>
 					<div class="accontainer">
@@ -164,6 +164,18 @@
 			acc[i].innerHTML += '<p><b class="cola">collapse all</b> | <b class="expa">expand all</b></p>';
 		};
 
+		function dynamicStyle(x){
+			if(x == true){
+				display = "block";
+				bg1 = "closed";
+				bg2 = "opened";
+			} else{
+				display = "none";
+				bg1 = "opened";
+				bg2 = "closed";
+			}
+		}
+
 		//capture all the H3s...
 		var ach = document.querySelectorAll('.ac > H3');
 
@@ -175,18 +187,6 @@
 			} else {
 				ach[a].style.cssText = 'background-image:url("tru-closed.jpg"); color:#005faf;';
 			};
-
-			function dynamicStyle(x){
-				if(x == true){
-					display = "block";
-					bg1 = "closed";
-					bg2 = "opened";
-				} else{
-					display = "none";
-					bg1 = "opened";
-					bg2 = "closed";
-				}
-			}
 
 			//2. bind a click event to toggle the display of the following sibling and restyle
 			ach[a].onclick = function() {
@@ -203,7 +203,7 @@
 		for (var i = 0; i < btn.length; i++) {
 			btn[i].onclick = function(){
 				dynamicStyle(this.className.indexOf("expa") > -1);
-				var acStuff = this.parentElement.parentElement.querySelectorAll('.ac > .ac_content');
+				var acStuff = this.parentElement.parentElement.querySelectorAll('.ac > div');
 				console.log(acStuff);
 				for ( var i = 0; i < acStuff.length; ++i ){
 					var ph = acStuff[i].previousElementSibling;
