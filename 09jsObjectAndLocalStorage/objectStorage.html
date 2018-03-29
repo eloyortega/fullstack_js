@@ -109,7 +109,7 @@
 		</div>
 	</div>
 	<script>
-		function hero(heroname, realname) {
+		function heroes(hn, rn) {
 
 			//set herolist to either a the browser stored array or an empty array
 			if (localStorage.getItem("heroes") == null) {
@@ -122,37 +122,36 @@
 			checklist = [];
 
 			//populate checklist with names from herolist
-			for (i in herolist) { checklist.push(herolist[i].hero); };
-
-			table = document.getElementById("savedheroes");
+			for (i in herolist) { checklist.push(herolist[i].heroname); };
 
 			// if input doesn't match any name already entered, then...
-			if (checklist.indexOf(heroname) == -1 && heroname != "" && heroname != null ) {
+			if ( (checklist.indexOf(hn) == -1) && (hn != "" || rn != "") ) {
 				//set user input to an object
-				superhero = {
-					hero: heroname,
-					alias: realname
+				hero = {
+					heroname: hn,
+					realname: rn
 				};
 
 				//push the data into herolist and store locally to browser
-				herolist.push(superhero);
+				herolist.push(hero);
 				jsonHeroList = JSON.stringify(herolist);
 				localStorage.setItem("heroes", jsonHeroList);
 				herolist = JSON.parse(localStorage.getItem("heroes"));
 
 				//create li
 				result = document.getElementById("result");
-				result.innerHTML += "<li>" + heroname + "<br>" + realname + "</li>";
+				result.innerHTML += "<li>" + hn + "<br>" + rn + "</li>";
 			}
 
+			table = document.getElementById("savedheroes");
 			table.innerHTML = '';
 
 			for (i in herolist) {
-			table.innerHTML += `
-			<tr>
-				<td>` + herolist[i].hero + `</td>
-				<td>` + herolist[i].alias + `</td>
-			</tr>`;
+				table.innerHTML += `
+				<tr>
+					<td>` + herolist[i].heroname + `</td>
+					<td>` + herolist[i].realname + `</td>
+				</tr>`;
 			}
 
 			//reset form values
@@ -164,7 +163,7 @@
 		function addition() {
 			n = document.getElementById("name").value;
 			r = document.getElementById("rname").value;
-			hero(n, r);
+			heroes(n, r);
 		};
 
 		addition();
