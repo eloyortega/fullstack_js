@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS DOM</title>
+</head>
+<body>
+	<p>See full list of style object
+		<a href="https://www.w3schools.com/jsref/dom_obj_style.asp">here</a>
+	</p>
+	<p>See full list of DOM Properties Methods 
+		<a href="https://www.w3schools.com/jsref/dom_obj_all.asp">here</a>
+	</p>
+
+	<img src="kitty.jpg" id="kit1" class="imgclass" style="width:200px;" alt="say whaaaaaaa!">
+	<img id="kit2" src="kitty.jpg" style="width:200px;">
+
+	<p>
+		<b id="findImgSrc"></b>
+	</p>
+
+	<hr>
+
+	<p>Lorem ipsum dolor sit amet. consectetur adipisicing elit.    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p class="pc">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+	<p class="pc">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
+	<p class="pNotThis">In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+
+	<hr>
+
+	<div id="pText"></div>
+
+	<hr>
+
+	<p>
+		<b class="pFirst"></b>
+	</p>
+
+	<script>
+		//document is an object
+		console.dir(document);
+
+		//get element by id and find values from it
+		console.dir(document.getElementById('kit1'));
+
+		a = document.getElementById('kit1').src;
+		b = document.getElementById('kit1').className;
+		c = document.getElementById('kit1').style.width;
+		d = document.getElementById('kit1').alt;
+		e = a + '<br>' + b + '<br>' + c + '<br>' + d;
+		document.getElementById('findImgSrc').innerHTML = e;
+
+		//set values
+		document.getElementById('kit2').src = 'kitten.jpg';
+		document.getElementById('kit2').style.border = '1px #f00 solid';
+
+		//find element by class
+		f = document.getElementsByClassName("pc");
+		for (g = 0; g < f.length; ++g) {
+			p = document.getElementById("pText");
+			p.innerHTML += "<p>" + g + ": " + f[g].innerHTML + "<p>";
+		}
+
+		//find element by css selector
+		h = document.querySelectorAll('p')[3].innerHTML;
+		document.getElementsByClassName('pFirst')[0].innerHTML = h;
+		document.getElementsByClassName('pFirst')[0].style.color = "#f00";
+		document.getElementsByClassName('pFirst')[0].setAttribute("id", "hi");
+	</script>
+</body>
+</html>
